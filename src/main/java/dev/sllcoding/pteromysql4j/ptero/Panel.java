@@ -3,7 +3,6 @@ package dev.sllcoding.pteromysql4j.ptero;
 import com.mattmalec.pterodactyl4j.PteroBuilder;
 import com.mattmalec.pterodactyl4j.application.entities.PteroApplication;
 import com.mattmalec.pterodactyl4j.client.entities.PteroClient;
-import com.sun.istack.internal.NotNull;
 import dev.sllcoding.pteromysql4j.mysql.Data;
 import dev.sllcoding.pteromysql4j.mysql.Database;
 import dev.sllcoding.pteromysql4j.ptero.auth.Account;
@@ -48,7 +47,7 @@ public class Panel {
         return url;
     }
 
-    public Server getServerByIdentifier(@NotNull String identifier) throws SQLException {
+    public Server getServerByIdentifier(String identifier) throws SQLException {
         ResultSet result = getDatabase().getTable("servers").where("uuidShort", "=", identifier).get();
         if (result.isFirst()) {
             return new Server(this, result);
@@ -56,7 +55,7 @@ public class Panel {
         return null;
     }
 
-    public Server getServerById(@NotNull int id) throws SQLException {
+    public Server getServerById(int id) throws SQLException {
         ResultSet resultSet = getDatabase().getTable("servers").where("id", "=", id).get();
         if (resultSet.isFirst()) {
             return new Server(this, resultSet);
